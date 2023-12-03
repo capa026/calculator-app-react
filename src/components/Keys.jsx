@@ -84,16 +84,11 @@ const Keys = ({ inputs, setInput, result, setResult }) => {
 
             // The input is not a number, is a math sign
           } else {
-            if (result == "") {
-              // The last index of the output is a number
-              if (!isNaN(lastIndex)) {
-                //If ther are less than 3 indexes then add the next input wich is a math sign
-                setInput((last) => (last += input));
-                //There are more than 3 indexes and the last index is a number
-              }
-            } else {
-              setInput(result + input);
-              setResult("");
+            // The last index of the output is a number
+            if (!isNaN(lastIndex)) {
+              //If ther are less than 3 indexes then add the next input wich is a math sign
+              setInput((last) => (last += input));
+              //There are more than 3 indexes and the last index is a number
             }
           }
         } else {
