@@ -1,5 +1,6 @@
 import { Box, Stack, styled } from "@mui/material";
-import Mexp from "math-expression-evaluator";
+
+import { calc } from "../utils/calc";
 
 const Row = styled(Stack)(({ theme }) => ({
   flexDirection: "row",
@@ -40,62 +41,10 @@ const Row2 = styled(Row)(({ theme }) => ({
 }));
 
 const Keys = ({ inputs, setInput, result, setResult }) => {
-  const mexp = new Mexp();
   const handleInput = (input) => {
-    let inputQuery = "";
-
-    switch (input) {
-      case "CE":
-        setInput("");
-        break;
-      case "C":
-        setInput("");
-        setResult("");
-        break;
-      case "BACK":
-        const toDelete = inputs.substr(0, inputs.length - 1);
-        setInput(toDelete);
-        break;
-
-      case "^":
-        const lastI = parseInt(inputs[inputs.length - 1]);
-        if (inputs.length > 0) {
-          if (!isNaN(parseInt(lastI)))
-            setInput((last) => (last += lastI * lastI));
-        }
-        break;
-
-      case "EQUAL":
-        let value = "";
-        if (inputs.length > 0) value = mexp.eval(inputs);
-        else return;
-        setResult(value);
-        setInput("");
-        break;
-
-      default:
-        const lastIndex = parseInt(inputs[inputs.length - 1]);
-        if (inputs.length > 0) {
-          if (!isNaN(parseInt(input))) {
-            //The input is a number
-
-            //Get the last state of the output and add the number
-            setInput((last) => (last += input));
-
-            // The input is not a number, is a math sign
-          } else {
-            // The last index of the output is a number
-            if (!isNaN(lastIndex)) {
-              //If ther are less than 3 indexes then add the next input wich is a math sign
-              setInput((last) => (last += input));
-              //There are more than 3 indexes and the last index is a number
-            }
-          }
-        } else {
-          if (!isNaN(parseInt(input))) setInput(input);
-        }
-    }
+    calc(input, inputs, setInput, result, setResult);
   };
+
   return (
     <Stack
       direction="row"
