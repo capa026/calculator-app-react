@@ -5,13 +5,22 @@ export const calc = (input, inputs, setInput, result, setResult) => {
     case "CE":
       setInput("");
       break;
+
     case "C":
       setInput("");
       setResult("");
       break;
+
     case "BACK":
       const toDelete = inputs.substr(0, inputs.length - 1);
       setInput(toDelete);
+      break;
+
+    case "ROOT":
+      break;
+    case "%":
+      break;
+    case "/x":
       break;
 
     case "^":

@@ -94,7 +94,7 @@ const Keys = ({ inputs, setInput, result, setResult }) => {
         </Row>
       </Stack>
       <Row2>
-        <Box onClick={() => handleInput("")}>⅟x</Box>
+        <Box onClick={() => handleInput("/x")}>⅟x</Box>
         <Box onClick={() => handleInput("/")}>÷</Box>
         <Box onClick={() => handleInput("*")}>x</Box>
         <Box onClick={() => handleInput("-")}>-</Box>
